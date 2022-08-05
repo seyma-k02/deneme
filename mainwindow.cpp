@@ -46,18 +46,20 @@ void MainWindow::Read_Data()
     buf = serial->readAll();
     if(!buf.isEmpty())
     {
-       // QString str= ui-> textEdit->toPlainText();
-       // str+=tr(buf);
-       // ui->textEdit->clear();
-       // ui->textEdit->append(str);
-        QTextStream textStream(&file);
-        QDateTime time;
-        //ui->textEdit->clear();
-        //ui->textEdit->append(textStream.readAll());
-        textStream.readAll();
-        textStream << time.currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
-        textStream << " [TX] : " <<  buf << "\n";
-
+        if(buf[0]=='a')
+        {
+            // QString str= ui-> textEdit->toPlainText();
+            // str+=tr(buf);
+            // ui->textEdit->clear();
+            // ui->textEdit->append(str);
+            QTextStream textStream(&file);
+            QDateTime time;
+            //ui->textEdit->clear();
+            //ui->textEdit->append(textStream.readAll());
+            textStream.readAll();
+            textStream << time.currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+            textStream << " [TX] : " <<  buf << "\n";
+        }
     }
     buf.clear();
 }
